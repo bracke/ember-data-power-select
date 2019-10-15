@@ -18,6 +18,11 @@ export default PowerSelect.extend({
   }),
 
   actions: {
+    
+    onOpen() {
+      this._super(...arguments)
+      this._performSearch('')
+    }, 
     onTriggerFocus(){
       this._super(...arguments)
       this._performSearch('')
