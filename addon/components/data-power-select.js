@@ -9,7 +9,7 @@ export default class extends PowerSelect
   store;
 
   @computed
-  search(){
+  get search(){
     return term => {
       const { modelName, params, queryKey = 'search', store } =
         this.getProperties('modelName', 'params', 'queryKey', 'store')
