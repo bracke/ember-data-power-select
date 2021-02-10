@@ -20,15 +20,18 @@ export default class extends PowerSelect
       return store.query(modelName, query)
     };
   };
-   
+  @action
+  onChange() {
+    this._super(...arguments);
+  }
   @action
   onOpen() {
-    this._super(...arguments)
-    this._performSearch('')
+    this._super(...arguments);
+    this._performSearch('');
   }
   @action
   onTriggerFocus(){
-    this._super(...arguments)
-    this._performSearch('')
+    this._super(...arguments);
+    this._performSearch('');
   } 
 }
