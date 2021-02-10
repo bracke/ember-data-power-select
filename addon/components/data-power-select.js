@@ -1,11 +1,15 @@
 import PowerSelect from 'ember-power-select/components/power-select';
 import { inject as service } from '@ember/service';
 import { computed } from '@ember/object'
+import { action } from "@ember/object";
 
-export default PowerSelect.extend({
-  store: service(),
+export default class extends PowerSelect
+{
+  @service
+  store;
 
-  search: computed(function(){
+  @computed
+  search(){
     return term => {
       const { modelName, params, queryKey = 'search', store } =
         this.getProperties('modelName', 'params', 'queryKey', 'store')
@@ -15,17 +19,16 @@ export default PowerSelect.extend({
 
       return store.query(modelName, query)
     };
-  }),
-
-  actions: {
-    
-    onOpen() {
-      this._super(...arguments)
-      this._performSearch('')
-    }, 
-    onTriggerFocus(){
-      this._super(...arguments)
-      this._performSearch('')
-    }
+  };
+   
+  @action
+  onOpen() {
+    this._super(...arguments)
+    this._performSearch('')
   }
-});
+  @action
+  onTriggerFocus(){
+    this._super(...arguments)
+    this._performSearch('')
+  } 
+}
